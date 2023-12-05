@@ -19,6 +19,7 @@ import (
 	"syscall"
 	"time"
 
+	"github.com/hashicorp/cli"
 	checkpoint "github.com/hashicorp/go-checkpoint"
 	discover "github.com/hashicorp/go-discover"
 	hclog "github.com/hashicorp/go-hclog"
@@ -36,7 +37,6 @@ import (
 	"github.com/hashicorp/nomad/nomad/structs"
 	"github.com/hashicorp/nomad/nomad/structs/config"
 	"github.com/hashicorp/nomad/version"
-	"github.com/mitchellh/cli"
 	"github.com/posener/complete"
 )
 

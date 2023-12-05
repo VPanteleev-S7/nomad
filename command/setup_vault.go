@@ -12,8 +12,8 @@ import (
 	"slices"
 	"strings"
 
+	"github.com/hashicorp/cli"
 	"github.com/hashicorp/vault/api"
-	"github.com/mitchellh/cli"
 	"github.com/posener/complete"
 )
 
@@ -216,7 +216,7 @@ a namespace %q and create all configuration within that namespace.
 	*/
 	s.Ui.Output(`
 We will now enable the JWT credential backend and create a JWT auth method that
-Nomad workloads will use. 
+Nomad workloads will use.
 `)
 
 	if s.authMethodExists() {

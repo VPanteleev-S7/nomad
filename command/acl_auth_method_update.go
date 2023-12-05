@@ -12,8 +12,8 @@ import (
 	"strings"
 	"time"
 
+	"github.com/hashicorp/cli"
 	"github.com/hashicorp/nomad/api"
-	"github.com/mitchellh/cli"
 	"github.com/posener/complete"
 )
 
@@ -61,7 +61,7 @@ ACL Auth Method Update Options:
     either 'local' or 'global'.
 
   -token-name-format
-    Sets the token format for the authenticated users. This can be lightly templated 
+    Sets the token format for the authenticated users. This can be lightly templated
     using HIL '${foo}' syntax. Defaults to '${auth_method_type}-${auth_method_name}'
 
   -default

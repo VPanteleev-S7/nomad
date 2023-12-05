@@ -7,7 +7,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/mitchellh/cli"
+	"github.com/hashicorp/cli"
 )
 
 type TLSCommand struct {
@@ -25,7 +25,7 @@ func (c *TLSCommand) Help() string {
 	helpText := `
 Usage: nomad tls <subcommand> <subcommand> [options]
 
-This command groups subcommands for creating certificates for Nomad TLS configuration. 
+This command groups subcommands for creating certificates for Nomad TLS configuration.
 The TLS command allows operators to generate self signed certificates to use
 when securing your Nomad cluster.
 

@@ -6,8 +6,8 @@ package command
 import (
 	"strings"
 
+	"github.com/hashicorp/cli"
 	"github.com/hashicorp/nomad/api/contexts"
-	"github.com/mitchellh/cli"
 	"github.com/posener/complete"
 )
 
@@ -26,7 +26,7 @@ Usage: nomad namespace <subcommand> [options] [args]
 
   Create or update a namespace:
 
-      $ nomad namespace apply -description "My new namespace" <name> 
+      $ nomad namespace apply -description "My new namespace" <name>
 
   List namespaces:
 

@@ -8,8 +8,8 @@ import (
 	"path/filepath"
 	"testing"
 
+	"github.com/hashicorp/cli"
 	"github.com/hashicorp/nomad/ci"
-	"github.com/mitchellh/cli"
 	"github.com/shoenig/test/must"
 )
 
@@ -65,9 +65,9 @@ func TestConfigValidateCommand_FailOnValidateParsableConfigFile(t *testing.T) {
 	fh := t.TempDir()
 
 	fp := filepath.Join(fh, "config.hcl")
-	err := os.WriteFile(fp, []byte(`data_dir="../" 
+	err := os.WriteFile(fp, []byte(`data_dir="../"
 	client {
-		enabled = true 
+		enabled = true
 	}`), 0644)
 	must.NoError(t, err)
 
