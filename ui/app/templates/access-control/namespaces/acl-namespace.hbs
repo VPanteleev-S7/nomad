@@ -4,6 +4,7 @@
 ~}}
 <Breadcrumb @crumb={{hash label=this.model.namespace.name args=(array "access-control.namespaces.acl-namespace" this.model.namespace.name)}} />
 {{page-title "Namespace"}}
+
 <section class="section">
 	<h1 class="title with-flex" data-test-title>
 		<div>
@@ -23,5 +24,13 @@
         />
 		{{/if}}
 	</h1>
-	<NamespaceEditor @namespace={{this.model.namespace}} />
+
+<p class="related-entities notification">
+  <FlightIcon @name="info-fill" @color="var(--blue)" />
+  <span>
+      View this namespace's <LinkTo @route="jobs" @query={{hash namespace=this.model.namespace.name}}>jobs</LinkTo>
+      or <LinkTo @route="variables" @query={{hash namespace=this.model.namespace.name}}>variables</LinkTo>
+  </span>
+</p>
+<NamespaceEditor @namespace={{this.model.namespace}} />
 </section>
