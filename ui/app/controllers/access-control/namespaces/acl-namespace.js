@@ -17,6 +17,9 @@ export default class AccessControlNamespacesAclNamespaceController extends Contr
     try {
       yield this.model.deleteRecord();
       yield this.model.save();
+      if (this.store.peekRecord('namespace', this.model.id)) {
+        this.store.unloadRecord(this.model);
+      }
       this.notifications.add({
         title: 'Namespace Deleted',
         color: 'success',
