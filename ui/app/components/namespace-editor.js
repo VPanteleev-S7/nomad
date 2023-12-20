@@ -31,11 +31,14 @@ export default class NamespaceEditorComponent extends Component {
     definitionHash['Description'] = this.namespace.description;
     definitionHash['Capabilities'] = this.namespace.capabilities;
     definitionHash['Meta'] = this.namespace.meta;
-    definitionHash['Quota'] = this.namespace.quota;
 
     if (this.can.can('configure-node-pools namespace')) {
       definitionHash['NodePoolConfiguration'] =
         this.namespace.nodePoolConfiguration;
+    }
+
+    if (this.can.can('configure-quotas namespace')) {
+      definitionHash['Quota'] = this.namespace.quota;
     }
 
     return JSON.stringify(definitionHash, null, 4);
@@ -53,13 +56,16 @@ export default class NamespaceEditorComponent extends Component {
       this.namespace.set('description', definitionHash['Description']);
       this.namespace.set('capabilities', definitionHash['Capabilities']);
       this.namespace.set('meta', definitionHash['Meta']);
-      this.namespace.set('quota', definitionHash['Quota']);
 
       if (this.can.can('configure-node-pools namespace')) {
         this.namespace.set(
           'nodePoolConfiguration',
           definitionHash['NodePoolConfiguration']
         );
+      }
+
+      if (this.can.can('configure-quotas namespace')) {
+        this.namespace.set('quota', definitionHash['Quota']);
       }
     } catch (_error) {
       this.JSONError = 'Invalid JSON';
@@ -89,6 +95,7 @@ export default class NamespaceEditorComponent extends Component {
           `A namespace with name ${this.namespace.name} already exists.`
         );
       }
+
       this.namespace.set('id', this.namespace.name);
       await this.namespace.save();
 

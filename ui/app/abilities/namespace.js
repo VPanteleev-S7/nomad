@@ -17,8 +17,15 @@ export default class Namespace extends AbstractAbility {
   @and('nodePoolGovernanceIsPresent', 'selfTokenIsManagement')
   canConfigureNodePools;
 
+  @and('quotasIsPresent', 'selfTokenIsManagement')
+  canConfigureQuotas;
+
   @computed('features.[]')
   get nodePoolGovernanceIsPresent() {
     return this.featureIsPresent('Node Pools Governance');
+  }
+
+  get quotasIsPresent() {
+    return this.featureIsPresent('Resource Quotas');
   }
 }
