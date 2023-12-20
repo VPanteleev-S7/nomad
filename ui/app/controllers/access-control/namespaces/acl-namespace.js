@@ -15,8 +15,8 @@ export default class AccessControlNamespacesAclNamespaceController extends Contr
 
   @task(function* () {
     try {
-      yield this.model.namespace.deleteRecord();
-      yield this.model.namespace.save();
+      yield this.model.deleteRecord();
+      yield this.model.save();
       this.notifications.add({
         title: 'Namespace Deleted',
         color: 'success',
@@ -26,7 +26,7 @@ export default class AccessControlNamespacesAclNamespaceController extends Contr
       this.router.transitionTo('access-control.namespaces');
     } catch (err) {
       this.notifications.add({
-        title: `Error deleting Namespace ${this.model.namespace.name}`,
+        title: `Error deleting Namespace ${this.model.name}`,
         message: err,
         color: 'critical',
         sticky: true,

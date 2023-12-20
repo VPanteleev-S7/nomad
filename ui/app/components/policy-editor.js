@@ -29,12 +29,12 @@ export default class PolicyEditorComponent extends Component {
       e.preventDefault(); // code-mirror "command+enter" submits the form, but doesnt have a preventDefault()
     }
     try {
-      const nameRegex = '^[a-zA-Z0-9-]{1,128}$';
-      if (!this.policy.name?.match(nameRegex)) {
-        throw new Error(
-          `Policy name must be 1-128 characters long and can only contain letters, numbers, and dashes.`
-        );
-      }
+      // const nameRegex = '^[a-zA-Z0-9-]{1,128}$';
+      // if (!this.policy.name?.match(nameRegex)) {
+      //   throw new Error(
+      //     `Policy name must be 1-128 characters long and can only contain letters, numbers, and dashes.`
+      //   );
+      // }
       const shouldRedirectAfterSave = this.policy.isNew;
       // Because we set the ID for adapter/serialization reasons just before save here,
       // that becomes a barrier to our Unique Name validation. So we explicltly exclude

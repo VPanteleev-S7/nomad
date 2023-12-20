@@ -86,10 +86,13 @@ export default class NamespaceEditorComponent extends Component {
 
       const shouldRedirectAfterSave = this.namespace.isNew;
 
-      // TODO: Nomitch - this incorrectly firest if you error on save then resave
+      // TODO: Nomitch - this incorrectly fires if you error on save then resave
       if (
         this.namespace.isNew &&
-        this.store.peekRecord('namespace', this.namespace.name)
+        this.store
+          .peekAll('namespace')
+          .filter((namespace) => namespace !== this.namespace)
+          .findBy('name', this.namespace.name)
       ) {
         throw new Error(
           `A namespace with name ${this.namespace.name} already exists.`
@@ -111,7 +114,16 @@ export default class NamespaceEditorComponent extends Component {
         );
       }
     } catch (err) {
+      console.log('was I run?');
+      console.log(this.namespace);
+
       this.namespace.set('id', null);
+      debugger;
+
+      console.log(this.namespace);
+      console.log('ca', this.namespace.changedAttributes());
+      console.log('id', this.namespace.id);
+      console.log('isNew', this.namespace.isNew);
 
       let title = this.namespace.isNew
         ? `Error creating Namespace ${this.namespace.name}`

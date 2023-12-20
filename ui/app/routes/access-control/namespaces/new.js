@@ -30,7 +30,7 @@ export default class AccessControlNamespacesNewRoute extends Route {
       };
     }
 
-    let namespace = await this.store.createRecord('namespace', {
+    return await this.store.createRecord('namespace', {
       name: '',
       description: '',
       capabilities: defaultCapabilities,
@@ -38,15 +38,13 @@ export default class AccessControlNamespacesNewRoute extends Route {
       quota: '',
       nodePoolConfiguration: defaultNodePoolConfig,
     });
-
-    return { namespace };
   }
 
   resetController(controller, isExiting) {
     if (isExiting) {
       // If user didn't save, delete the freshly created model
-      if (controller.model.namespace.isNew) {
-        controller.model.namespace.destroyRecord();
+      if (controller.model.isNew) {
+        controller.model.destroyRecord();
       }
     }
   }

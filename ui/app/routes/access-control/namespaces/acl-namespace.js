@@ -8,7 +8,6 @@ import Route from '@ember/routing/route';
 import withForbiddenState from 'nomad-ui/mixins/with-forbidden-state';
 import WithModelErrorHandling from 'nomad-ui/mixins/with-model-error-handling';
 import { inject as service } from '@ember/service';
-import { hash } from 'rsvp';
 
 export default class AccessControlNamespacesAclNamespaceRoute extends Route.extend(
   withForbiddenState,
@@ -17,16 +16,12 @@ export default class AccessControlNamespacesAclNamespaceRoute extends Route.exte
   @service store;
 
   async model(params) {
-    let namespace = await this.store.findRecord(
+    return await this.store.findRecord(
       'namespace',
       decodeURIComponent(params.name),
       {
         reload: true,
       }
     );
-
-    return hash({
-      namespace,
-    });
   }
 }
